@@ -10,3 +10,4 @@ CREATE TABLE Admin (
     password VARCHAR(255) NOT NULL,
     Role ENUM('Manager', 'Staff') NOT NULL
 );
+
