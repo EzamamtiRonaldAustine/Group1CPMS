@@ -12,6 +12,7 @@ CREATE TABLE Admin (
     Role ENUM('Manager', 'Staff') NOT NULL
 );
 
+<<<<<<< HEAD
 -- User Table
 CREATE TABLE User (
     user_id INT PRIMARY KEY AUTO_INCREMENT,
@@ -66,3 +67,11 @@ CREATE TABLE Payment (
     FOREIGN KEY (ticket_id) REFERENCES Ticket(ticket_id) ON DELETE CASCADE,
     FOREIGN KEY (user_id) REFERENCES User(user_id) ON DELETE CASCADE
 );
+=======
+CREATE TABLE User ( user_id INT PRIMARY KEY AUTO_INCREMENT, 
+    Name VARCHAR(100) NOT NULL, 
+    Email VARCHAR(100) UNIQUE NOT NULL, 
+    Phone VARCHAR(20) UNIQUE NOT NULL, 
+    Password VARCHAR(255) NOT NULL, 
+    UserType ENUM('Regular', 'VIP') NOT NULL );
+>>>>>>> 2a96d23a0ac88891140a9d4252d860f6ac0e3925
