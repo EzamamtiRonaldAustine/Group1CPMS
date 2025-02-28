@@ -140,15 +140,109 @@ WHERE p.status = 'Pending';
 
 
 JOINS
+-- Natural Join: Users with their reservations
+SELECT * 
+FROM User 
+NATURAL JOIN Reservation;
 
+-- Left Outer Join: All users and their reservations (including those without)
+SELECT u.FName, u.Email, r.reservationDate
+FROM User u
+LEFT JOIN Reservation r ON u.user_id = r.user_id;
+
+-- Right Outer Join: All reservations and their users (including orphaned reservations)
+SELECT u.FName, u.Email, r.reservationDate
+FROM User u
+RIGHT JOIN Reservation r ON u.user_id = r.user_id;
+
+-- Full Outer Join: Combine left and right joins (since MySQL doesn't support FULL JOIN)
+SELECT u.FName, u.Email, r.reservationDate
+FROM User u
+LEFT JOIN Reservation r ON u.user_id = r.user_id
+UNION
+SELECT u.FName, u.Email, r.reservationDate
+FROM User u
+RIGHT JOIN Reservation r ON u.user_id = r.user_id;
 
 
 CASE CONDITIONAL STATEMENTS
-
-
+SELECT ticket_id, entryTime, duration, 
+    CASE 
+        WHEN duration <= 30 THEN 'Short Stay'
+        WHEN duration BETWEEN 31 AND 90 THEN 'Medium Stay'
+        ELSE 'Long Stay'
+    END AS StayDurationCategory
+FROM Ticket;
 
 CONSTRAINTS
 
+CREATE DATABASE ParkingSystem;
+USE ParkingSystem;
+
+-- Admin Table
+CREATE TABLE Admin (
+    admin_id INT PRIMARY KEY AUTO_INCREMENT,
+    FName VARCHAR(100) NOT NULL,
+    email VARCHAR(100) NOT NULL,
+    phone VARCHAR(20) NOT NULL,
+    password VARCHAR(255) NOT NULL,
+    Role ENUM('Manager', 'Staff') NOT NULL
+);
+
+-- User Table
+CREATE TABLE User (
+    user_id INT PRIMARY KEY AUTO_INCREMENT,
+    FName VARCHAR(100) NOT NULL,
+    Email VARCHAR(100) NOT NULL,
+    Phone VARCHAR(20) NOT NULL,
+    Password VARCHAR(255) NOT NULL,
+    UserType ENUM('Regular', 'VIP') NOT NULL
+);
+
+-- Parking Slot Table
+CREATE TABLE ParkingSlot (
+    slot_id INT PRIMARY KEY AUTO_INCREMENT,
+    location VARCHAR(255) NOT NULL,
+    admin_id INT,
+    status ENUM('Available', 'Occupied', 'Reserved') NOT NULL DEFAULT 'Available'
+);
+
+-- Reservation Table
+CREATE TABLE Reservation (
+    reservation_id INT PRIMARY KEY AUTO_INCREMENT,
+    reservationDate DATETIME NOT NULL DEFAULT NOW(),
+    booking_date DATETIME NOT NULL,
+    user_id INT NOT NULL
+);
+
+-- Ticket Table
+CREATE TABLE Ticket (
+    ticket_id INT PRIMARY KEY AUTO_INCREMENT,
+    entryTime DATETIME NOT NULL DEFAULT NOW(),
+    duration INT NOT NULL,
+    baseRate DECIMAL(10,2) NOT NULL,
+    penaltyRate DECIMAL(10,2) NOT NULL,
+    status ENUM('Active', 'Expired', 'Paid') NOT NULL DEFAULT 'Active',
+    reservation_id INT,
+    slot_id INT NOT NULL
+);
+
+-- Payment Table
+CREATE TABLE Payment (
+    payment_id INT PRIMARY KEY AUTO_INCREMENT,
+    amount_paid DECIMAL(10,2) NOT NULL,
+    ticket_id INT NOT NULL,
+    user_id INT NOT NULL,
+    paymentMethod ENUM('Cash', 'Card', 'Online') NOT NULL,
+    paymentDate DATETIME NOT NULL DEFAULT NOW(),
+    status ENUM('Pending', 'Completed', 'Failed') NOT NULL DEFAULT 'Pending'
+);
 
 
 DDL &B DML
+UPDATE Ticket 
+SET status = 'Paid' 
+WHERE ticket_id = 1;
+
+DELETE FROM Payment 
+WHERE status = 'Failed';
