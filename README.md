@@ -137,5 +137,18 @@ JOIN User u ON p.user_id = u.user_id
 JOIN Ticket t ON p.ticket_id = t.ticket_id
 WHERE p.status = 'Pending';
 
+
+
 JOINS
 
+
+
+CASE CONDITIONAL STATEMENTS
+
+
+
+CONSTRAINTS
+
+
+
+DDL &B DML
