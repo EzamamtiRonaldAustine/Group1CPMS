@@ -113,6 +113,8 @@ INSERT INTO Payment (amount_paid, ticket_id, user_id, paymentMethod, paymentDate
 (3.75, 5, 5, 'Card', NOW(), 'Completed'),
 (5.00, 1, 1, 'Cash', NOW(), 'Failed');
 
+REPORTS THAT CAN BE STORED AS VIEWS
+
 -- View to get all users with reservations
 CREATE VIEW UserReservations AS
 SELECT u.FName, u.Email, r.reservationDate, r.booking_date
