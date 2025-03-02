@@ -17,7 +17,7 @@ CREATE TABLE User (
     user_id INT PRIMARY KEY AUTO_INCREMENT,
     FName VARCHAR(100) NOT NULL,
     Email VARCHAR(100) UNIQUE NOT NULL,
-    Phone VARCHAR(20) UNIQUE NOT NULL,desc
+    Phone VARCHAR(20) UNIQUE NOT NULL,
     Password VARCHAR(255) NOT NULL,
     UserType ENUM('Regular', 'VIP') NOT NULL
 );
@@ -66,3 +66,5 @@ CREATE TABLE Payment (
     FOREIGN KEY (ticket_id) REFERENCES Ticket(ticket_id) ON DELETE CASCADE,
     FOREIGN KEY (user_id) REFERENCES User(user_id) ON DELETE CASCADE
 );
+
+SELECT* FROM payment;
