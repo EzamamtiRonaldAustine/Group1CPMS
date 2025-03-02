@@ -4,7 +4,7 @@ USE ParkingSystem;
 
 -- Admin Table
 CREATE TABLE Admin (
-    admin_id INT PRIMARY KEY AUTO_INCREMENT,
+    admin_id INT PRIMARY KEY,
     FName VARCHAR(100) NOT NULL,
     email VARCHAR(100) UNIQUE NOT NULL,
     phone VARCHAR(20) UNIQUE NOT NULL,
@@ -14,7 +14,7 @@ CREATE TABLE Admin (
 
 -- User Table
 CREATE TABLE User (
-    user_id INT PRIMARY KEY AUTO_INCREMENT,
+    user_id INT PRIMARY KEY,
     FName VARCHAR(100) NOT NULL,
     Email VARCHAR(100) UNIQUE NOT NULL,
     Phone VARCHAR(20) UNIQUE NOT NULL,
@@ -24,7 +24,7 @@ CREATE TABLE User (
 
 -- Parking Slot Table
 CREATE TABLE ParkingSlot (
-    slot_id INT PRIMARY KEY AUTO_INCREMENT,
+    slot_id INT PRIMARY KEY,
     location VARCHAR(255) NOT NULL,
     admin_id INT,
     status ENUM('Available', 'Occupied', 'Reserved') NOT NULL,
@@ -33,7 +33,7 @@ CREATE TABLE ParkingSlot (
 
 -- Reservation Table
 CREATE TABLE Reservation (
-    reservation_id INT PRIMARY KEY AUTO_INCREMENT,
+    reservation_id INT PRIMARY KEY,
     reservationDate DATETIME NOT NULL,
     booking_date DATETIME NOT NULL,
     user_id INT,
@@ -42,7 +42,7 @@ CREATE TABLE Reservation (
 
 -- Ticket Table
 CREATE TABLE Ticket (
-    ticket_id INT PRIMARY KEY AUTO_INCREMENT,
+    ticket_id INT PRIMARY KEY,
     entryTime DATETIME NOT NULL,
     duration INT NOT NULL,
     baseRate DECIMAL(10,2) NOT NULL,
@@ -56,7 +56,7 @@ CREATE TABLE Ticket (
 
 -- Payment Table
 CREATE TABLE Payment (
-    payment_id INT PRIMARY KEY AUTO_INCREMENT,
+    payment_id INT PRIMARY KEY,
     amount_paid DECIMAL(10,2) NOT NULL,
     ticket_id INT,
     user_id INT,
