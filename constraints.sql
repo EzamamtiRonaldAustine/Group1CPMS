@@ -40,3 +40,35 @@ ADD CONSTRAINT CK_Payment_Method CHECK (paymentMethod IN ('Cash', 'Card', 'Onlin
 
 ALTER TABLE Reservation 
 ADD CONSTRAINT CK_Reservation_Date CHECK (booking_date >= reservationDate);
+
+-- Foreign Key Constraints with ON DELETE SET NULL
+ALTER TABLE ParkingSlot 
+ADD CONSTRAINT FK_ParkingSlot_Admin FOREIGN KEY (admin_id) REFERENCES Admin(admin_id) ON DELETE SET NULL;
+
+ALTER TABLE Reservation 
+ADD CONSTRAINT FK_Reservation_User FOREIGN KEY (user_id) REFERENCES User(user_id) ON DELETE SET NULL;
+
+ALTER TABLE Ticket 
+ADD CONSTRAINT FK_Ticket_Reservation FOREIGN KEY (reservation_id) REFERENCES Reservation(reservation_id) ON DELETE SET NULL,
+ADD CONSTRAINT FK_Ticket_Slot FOREIGN KEY (slot_id) REFERENCES ParkingSlot(slot_id) ON DELETE SET NULL;
+
+ALTER TABLE Payment 
+ADD CONSTRAINT FK_Payment_Ticket FOREIGN KEY (ticket_id) REFERENCES Ticket(ticket_id) ON DELETE SET NULL,
+ADD CONSTRAINT FK_Payment_User FOREIGN KEY (user_id) REFERENCES User(user_id) ON DELETE SET NULL;
+
+-- Additional Check Constraints
+ALTER TABLE User 
+ADD CONSTRAINT CK_UserType CHECK (UserType IN ('Regular', 'VIP'));
+
+ALTER TABLE ParkingSlot 
+ADD CONSTRAINT CK_ParkingSlot_Status CHECK (status IN ('Available', 'Occupied', 'Reserved'));
+
+ALTER TABLE Ticket 
+ADD CONSTRAINT CK_Ticket_Status CHECK (status IN ('Active', 'Expired', 'Paid'));
+
+ALTER TABLE Payment 
+ADD CONSTRAINT CK_Payment_Status CHECK (status IN ('Pending', 'Completed', 'Failed')),
+ADD CONSTRAINT CK_Payment_Method CHECK (paymentMethod IN ('Cash', 'Card', 'Online'));
+
+ALTER TABLE Reservation 
+ADD CONSTRAINT CK_Reservation_Date CHECK (booking_date >= reservationDate);
