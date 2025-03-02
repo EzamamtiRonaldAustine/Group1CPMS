@@ -1,3 +1,4 @@
+USE ParkingSystem;
 --natural joints--
 CREATE VIEW AdminParkingSlotDetails AS
 SELECT
