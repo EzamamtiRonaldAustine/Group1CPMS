@@ -67,4 +67,4 @@ CREATE TABLE Payment (
     FOREIGN KEY (user_id) REFERENCES User(user_id) ON DELETE CASCADE
 );
 
-SELECT* FROM payment;
+SELECT* FROM payment; 
