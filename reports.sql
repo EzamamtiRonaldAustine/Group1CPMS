@@ -1,4 +1,5 @@
 --List of All Available and Reserved Parking Slots
+USE ParkingSystem;
 CREATE VIEW View_Available_Slots AS
 SELECT 
     slot_id, 
