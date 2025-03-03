@@ -4,7 +4,7 @@ USE ParkingSystem;
 
 -- Admin Table
 CREATE TABLE Admin (
-    admin_id INT PRIMARY KEY,
+    admin_id VARCHAR(5) PRIMARY KEY,
     FName VARCHAR(100) NOT NULL,
     email VARCHAR(100) UNIQUE NOT NULL,
     phone VARCHAR(20) UNIQUE NOT NULL,
@@ -14,7 +14,7 @@ CREATE TABLE Admin (
 
 -- User Table
 CREATE TABLE User (
-    user_id INT PRIMARY KEY,
+    user_id VARCHAR(5) PRIMARY KEY,
     FName VARCHAR(100) NOT NULL,
     Email VARCHAR(100) UNIQUE NOT NULL,
     Phone VARCHAR(20) UNIQUE NOT NULL,
@@ -24,7 +24,7 @@ CREATE TABLE User (
 
 -- Parking Slot Table
 CREATE TABLE ParkingSlot (
-    slot_id INT PRIMARY KEY,
+    slot_id VARCHAR(5) PRIMARY KEY,
     location VARCHAR(255) NOT NULL,
     admin_id INT,
     status ENUM('Available', 'Occupied', 'Reserved') NOT NULL,
@@ -33,7 +33,7 @@ CREATE TABLE ParkingSlot (
 
 -- Reservation Table
 CREATE TABLE Reservation (
-    reservation_id INT PRIMARY KEY,
+    reservation_id VARCHAR(5) PRIMARY KEY,
     reservationDate DATETIME NOT NULL,
     booking_date DATETIME NOT NULL,
     user_id INT,
@@ -42,7 +42,7 @@ CREATE TABLE Reservation (
 
 -- Ticket Table
 CREATE TABLE Ticket (
-    ticket_id INT PRIMARY KEY,
+    ticket_id VARCHAR(5) PRIMARY KEY,
     entryTime DATETIME NOT NULL,
     duration INT NOT NULL,
     baseRate DECIMAL(10,2) NOT NULL,
@@ -56,15 +56,25 @@ CREATE TABLE Ticket (
 
 -- Payment Table
 CREATE TABLE Payment (
-    payment_id INT PRIMARY KEY,
+    payment_id VARCHAR(5) PRIMARY KEY,
     amount_paid DECIMAL(10,2) NOT NULL,
     ticket_id INT,
     user_id INT,
-    paymentMethod ENUM('Cash', 'Card', 'Online') NOT NULL,
+    paymentMethod ENUM('Mobile money', 'Flexi_Pay') NOT NULL,
     paymentDate DATETIME NOT NULL,
     status ENUM('Pending', 'Completed', 'Failed') NOT NULL,
     FOREIGN KEY (ticket_id) REFERENCES Ticket(ticket_id) ON DELETE CASCADE,
     FOREIGN KEY (user_id) REFERENCES User(user_id) ON DELETE CASCADE
 );
 
-SELECT* FROM payment; 
+DESC Admin;
+
+DESC User;
+
+DESC ParkingSlot;
+
+DESC Reservation;
+
+DESC Ticket;
+
+DESC Payment;

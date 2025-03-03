@@ -51,3 +51,15 @@ SELECT
     COUNT(payment_id) AS total_payments
 FROM Payment
 GROUP BY user_id;
+
+SELECT * FROM View_Available_Slots;
+
+SELECT * FROM View_Unpaid_Tickets;
+
+SELECT * FROM View_Revenue_Report;
+
+SELECT * FROM View_User_Reservations;
+
+SELECT * FROM View_Parking_Utilization;
+
+SELECT * FROM View_User_Payment_Count;

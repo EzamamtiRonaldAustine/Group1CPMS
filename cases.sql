@@ -1,3 +1,4 @@
+USE ParkingSystem;
 --updating the status of parking slots based on their current status
 UPDATE ParkingSlot
 SET STATUS = CASE 
@@ -5,7 +6,7 @@ SET STATUS = CASE
     WHEN STATUS = 'Reserved' THEN 'Occupied'
     ELSE STATUS
 END
-WHERE slot_id = 5 OR slot_id = 10; 
+WHERE slot_id = 'A5'; 
 
 --deleting tickets based on their status
 DELETE FROM Ticket 
