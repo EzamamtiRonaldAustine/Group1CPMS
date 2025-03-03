@@ -1,6 +1,6 @@
 # Group1CPMS
-CREATE DATABASE ParkingSystem;
-USE ParkingSystem;
+-- CREATE DATABASE ParkingSystem;
+-- USE ParkingSystem;
 
 -- Admin Table
 CREATE TABLE Admin (
@@ -26,7 +26,7 @@ CREATE TABLE User (
 CREATE TABLE ParkingSlot (
     slot_id VARCHAR(5) PRIMARY KEY,
     location VARCHAR(255) NOT NULL,
-    admin_id INT,
+    admin_id VARCHAR(5),
     status ENUM('Available', 'Occupied', 'Reserved') NOT NULL,
     FOREIGN KEY (admin_id) REFERENCES Admin(admin_id) ON DELETE SET NULL
 );
@@ -36,7 +36,7 @@ CREATE TABLE Reservation (
     reservation_id VARCHAR(5) PRIMARY KEY,
     reservationDate DATETIME NOT NULL,
     booking_date DATETIME NOT NULL,
-    user_id INT,
+    user_id VARCHAR(5),
     FOREIGN KEY (user_id) REFERENCES User(user_id) ON DELETE CASCADE
 );
 
@@ -48,8 +48,8 @@ CREATE TABLE Ticket (
     baseRate DECIMAL(10,2) NOT NULL,
     penaltyRate DECIMAL(10,2) NOT NULL,
     status ENUM('Active', 'Expired', 'Paid') NOT NULL,
-    reservation_id INT,
-    slot_id INT,
+    reservation_id VARCHAR(5),
+    slot_id VARCHAR(5),
     FOREIGN KEY (reservation_id) REFERENCES Reservation(reservation_id) ON DELETE SET NULL,
     FOREIGN KEY (slot_id) REFERENCES ParkingSlot(slot_id) ON DELETE CASCADE
 );
@@ -58,8 +58,8 @@ CREATE TABLE Ticket (
 CREATE TABLE Payment (
     payment_id VARCHAR(5) PRIMARY KEY,
     amount_paid DECIMAL(10,2) NOT NULL,
-    ticket_id INT,
-    user_id INT,
+    ticket_id VARCHAR(5),
+    user_id VARCHAR(5),
     paymentMethod ENUM('Mobile money', 'Flexi_Pay') NOT NULL,
     paymentDate DATETIME NOT NULL,
     status ENUM('Pending', 'Completed', 'Failed') NOT NULL,
