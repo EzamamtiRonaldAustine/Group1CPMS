@@ -8,7 +8,7 @@ SET STATUS = CASE
     WHEN STATUS = 'Reserved' THEN 'Occupied'
     ELSE STATUS
 END
-WHERE slot_id = 'A5'; 
+WHERE slot_id = 'S5'; 
 
 --deleting tickets based on their status
 --this deletes paid tickets older than one day
