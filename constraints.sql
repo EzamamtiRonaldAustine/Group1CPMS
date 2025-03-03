@@ -1,5 +1,15 @@
 USE ParkingSystem;
 
+-- constraints
+ALTER Table Admin add constraint admin_email check (email like '%@%');
+
+ALTER table Admin add constraint admin_telno check (length(telno)=10);
+
+ALTER Table User add constraint user_email check (email like '%@%');
+
+ALTER table User add constraint user_telno check (length(telno)=10);
+
+
 -- Foreign Key Constraints
 ALTER TABLE ParkingSlot 
 ADD CONSTRAINT FK_ParkingSlot_Admin FOREIGN KEY (admin_id) REFERENCES Admin(admin_id) ON DELETE SET NULL;
@@ -34,6 +44,26 @@ ADD CONSTRAINT CK_Payment_Method CHECK (paymentMethod IN ('Mobile money', 'Flexi
 
 ALTER TABLE Reservation 
 ADD CONSTRAINT CK_Reservation_Date CHECK (booking_date >= reservationDate);
+
+
+-- view constraints
+SELECT CONSTRAINT_NAME, constraint_Type, TABLE_NAME 
+from information_schema.TABLE_CONSTRAINTS where TABLE_NAME='Admin';
+
+SELECT CONSTRAINT_NAME, constraint_Type, TABLE_NAME
+from information_schema.TABLE_CONSTRAINTS where TABLE_NAME='User';
+
+SELECT CONSTRAINT_NAME, constraint_Type, TABLE_NAME
+from information_schema.TABLE_CONSTRAINTS WHERE TABLE_NAME='ParkingSlot';
+
+SELECT CONSTRAINT_NAME, constraint_Type, TABLE_NAME
+from information_schema.TABLE_CONSTRAINTS WHERE TABLE_NAME='Reservation';
+
+SELECT CONSTRAINT_NAME, constraint_Type, TABLE_NAME
+from information_schema.TABLE_CONSTRAINTS WHERE TABLE_NAME='Ticket';
+
+SELECT CONSTRAINT_NAME, constraint_Type, TABLE_NAME
+from information_schema.TABLE_CONSTRAINTS WHERE TABLE_NAME='Payment';
 
 
 

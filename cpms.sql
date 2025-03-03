@@ -28,7 +28,7 @@ CREATE TABLE ParkingSlot (
     location VARCHAR(255) NOT NULL,
     admin_id VARCHAR(5),
     status ENUM('Available', 'Occupied', 'Reserved') NOT NULL,
-    FOREIGN KEY (admin_id) REFERENCES Admin(admin_id) ON DELETE SET NULL
+    FOREIGN KEY (admin_id) REFERENCES Admin(admin_id)
 );
 
 -- Reservation Table
@@ -37,7 +37,7 @@ CREATE TABLE Reservation (
     reservationDate DATETIME NOT NULL,
     booking_date DATETIME NOT NULL,
     user_id VARCHAR(5),
-    FOREIGN KEY (user_id) REFERENCES User(user_id) ON DELETE CASCADE
+    FOREIGN KEY (user_id) REFERENCES User(user_id)
 );
 
 -- Ticket Table
@@ -50,8 +50,8 @@ CREATE TABLE Ticket (
     status ENUM('Active', 'Expired', 'Paid') NOT NULL,
     reservation_id VARCHAR(5),
     slot_id VARCHAR(5),
-    FOREIGN KEY (reservation_id) REFERENCES Reservation(reservation_id) ON DELETE SET NULL,
-    FOREIGN KEY (slot_id) REFERENCES ParkingSlot(slot_id) ON DELETE CASCADE
+    FOREIGN KEY (reservation_id) REFERENCES Reservation(reservation_id),
+    FOREIGN KEY (slot_id) REFERENCES ParkingSlot(slot_id)
 );
 
 -- Payment Table
@@ -63,8 +63,8 @@ CREATE TABLE Payment (
     paymentMethod ENUM('Mobile money', 'Flexi_Pay') NOT NULL,
     paymentDate DATETIME NOT NULL,
     status ENUM('Pending', 'Completed', 'Failed') NOT NULL,
-    FOREIGN KEY (ticket_id) REFERENCES Ticket(ticket_id) ON DELETE CASCADE,
-    FOREIGN KEY (user_id) REFERENCES User(user_id) ON DELETE CASCADE
+    FOREIGN KEY (ticket_id) REFERENCES Ticket(ticket_id),
+    FOREIGN KEY (user_id) REFERENCES User(user_id)
 );
 
 DESC Admin;
@@ -78,3 +78,6 @@ DESC Reservation;
 DESC Ticket;
 
 DESC Payment;
+
+
+
