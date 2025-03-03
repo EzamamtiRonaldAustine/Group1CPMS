@@ -1,3 +1,4 @@
+
 use parkingsystem;
 INSERT INTO Admin VALUES
 ('A1','Ronald', 'ronald@admin.com', '0706807623', 'ronald123', 'Manager'),
@@ -24,27 +25,27 @@ INSERT INTO ParkingSlot  VALUES
 
 -- Reservation Data
 INSERT INTO Reservation VALUES
-('R1',NOW(), NOW() + INTERVAL 1 DAY, 1),
-('R2',NOW(), NOW() + INTERVAL 2 DAY, 2),
-('R3',NOW(), NOW() + INTERVAL 3 DAY, 3),
-('R4',NOW(), NOW() + INTERVAL 4 DAY, 4),
-('R5',NOW(), NOW() + INTERVAL 5 DAY, 5);
+('R1',NOW(), NOW() + INTERVAL 1 DAY, 'C1'),
+('R2',NOW(), NOW() + INTERVAL 2 DAY, 'C2'),
+('R3',NOW(), NOW() + INTERVAL 3 DAY, 'C3'),
+('R4',NOW(), NOW() + INTERVAL 4 DAY, 'C4'),
+('R5',NOW(), NOW() + INTERVAL 5 DAY, 'C5');
 
 -- Ticket Data
 INSERT INTO Ticket VALUES
-('T1',NOW(), 60, 5.00, 2.00, 'Active', 1, 1),
-('T2',NOW(), 120, 10.00, 3.00, 'Paid', 2, 2),
-('T3',NOW(), 90, 7.50, 2.50, 'Expired', 3, 3),
-('T4',NOW(), 30, 2.50, 1.00, 'Active', 4, 4),
-('T5',NOW(), 45, 3.75, 1.50, 'Paid', 5, 5);
+('T1',NOW(), 60, 5.00, 2.00, 'Active', 'R1', 'S1'),
+('T2',NOW(), 120, 10.00, 3.00, 'Paid', 'R2', 'S2'),
+('T3',NOW(), 90, 7.50, 2.50, 'Expired', 'R3', 'S3'),
+('T4',NOW(), 30, 2.50, 1.00, 'Active', 'R4', 'S4'),
+('T5',NOW(), 45, 3.75, 1.50, 'Paid', 'R5', 'S5');
 
 -- Payment Data
 INSERT INTO Payment  VALUES
-('P1',10000, 2, 2, 'Mobile money', NOW(), 'Completed'),
-('P2',7000, 3, 3, 'Mobile money', NOW(), 'Completed'),
-('P3',5000, 4, 4, 'Flexi_Pay', NOW(), 'Pending'),
-('P4',9500, 5, 5, 'Flexi_Pay', NOW(), 'Completed'),
-('P5',6000, 1, 1, 'Mobile money', NOW(), 'Failed');
+('P1',10000, 'T2', 'C2', 'Mobile money', NOW(), 'Completed'),
+('P2',7000, 'T3', 'C3', 'Mobile money', NOW(), 'Completed'),
+('P3',5000, 'T4', 'C4', 'Flexi_Pay', NOW(), 'Pending'),
+('P4',9500, 'T5', 'C5', 'Flexi_Pay', NOW(), 'Completed'),
+('P5',6000, 'T1', 'C1', 'Mobile money', NOW(), 'Failed');
 
 SELECT * FROM Admin;
 
