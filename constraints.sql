@@ -1,13 +1,14 @@
+
 USE ParkingSystem;
 
 -- constraints
 ALTER Table Admin add constraint admin_email check (email like '%@%');
 
-ALTER table Admin add constraint admin_telno check (length(telno)=10);
+ALTER table Admin add constraint admin_telno check (length(Phone)=10);
 
 ALTER Table User add constraint user_email check (email like '%@%');
 
-ALTER table User add constraint user_telno check (length(telno)=10);
+ALTER table User add constraint user_telno check (length(Phone)=10);
 
 
 -- Foreign Key Constraints

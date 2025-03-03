@@ -1,6 +1,6 @@
 # Group1CPMS
--- CREATE DATABASE ParkingSystem;
--- USE ParkingSystem;
+CREATE DATABASE ParkingSystem;
+USE ParkingSystem;
 
 -- Admin Table
 CREATE TABLE Admin (
