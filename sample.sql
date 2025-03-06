@@ -45,3 +45,5 @@ INSERT INTO Payment (amount_paid, ticket_id, user_id, paymentMethod, paymentDate
 (5000, 4, 4, 'Online', NOW(), 'Pending'),
 (9500, 5, 5, 'Card', NOW(), 'Completed'),
 (6000, 1, 1, 'Cash', NOW(), 'Failed');
+
+DROP TABLE payment;
