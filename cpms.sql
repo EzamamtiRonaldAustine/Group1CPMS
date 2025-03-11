@@ -79,5 +79,6 @@ DESC Ticket;
 
 DESC Payment;
 
+select * from reservation;
 
-
+UPDATE User SET FName = UPPER(FName);
