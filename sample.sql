@@ -40,6 +40,7 @@ INSERT INTO Ticket VALUES
 ('T5',NOW(), 45, 3.75, 1.50, 'Paid', 'R5', 'S5');
 
 -- Payment Data
+<<<<<<< HEAD
 INSERT INTO Payment  VALUES
 ('P1',10000, 'T2', 'C2', 'Mobile money', NOW(), 'Completed'),
 ('P2',7000, 'T3', 'C3', 'Mobile money', NOW(), 'Completed'),
@@ -58,3 +59,13 @@ SELECT * FROM Reservation;
 SELECT * FROM Ticket;
 
 SELECT * FROM Payment;
+=======
+INSERT INTO Payment (amount_paid, ticket_id, user_id, paymentMethod, paymentDate, status) VALUES
+(10000, 2, 2, 'Card', NOW(), 'Completed'),
+(7000, 3, 3, 'Cash', NOW(), 'Completed'),
+(5000, 4, 4, 'Online', NOW(), 'Pending'),
+(9500, 5, 5, 'Card', NOW(), 'Completed'),
+(6000, 1, 1, 'Cash', NOW(), 'Failed');
+
+DROP TABLE payment;
+>>>>>>> 1efcd652018bdb25055c269c8f215144c42f078a
