@@ -1,3 +1,5 @@
+
+USE ParkingSystem;
 --natural joints--
 CREATE VIEW AdminParkingSlotDetails AS
 SELECT
@@ -11,6 +13,7 @@ FROM
     Admin
 NATURAL JOIN
     ParkingSlot;
+
 
 SELECT* FROM AdminParkingSlotDetails;
 
