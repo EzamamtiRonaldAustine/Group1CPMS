@@ -1,5 +1,3 @@
-
-USE ParkingSystem;
 --natural joints--
 CREATE VIEW AdminParkingSlotDetails AS
 SELECT
@@ -13,7 +11,6 @@ FROM
     Admin
 NATURAL JOIN
     ParkingSlot;
-
 
 SELECT* FROM AdminParkingSlotDetails;
 
@@ -112,3 +109,12 @@ RIGHT JOIN
     Ticket t ON p.Ticket_id = t.Ticket_id;
 
 SELECT* FROM FullPaymentTicket;
+
+
+SELECT CONSTRAINT_NAME, CONSTRAINT_TYPE, TABLE_NAME
+FROM USER_CONSTRAINTS
+WHERE TABLE_NAME = 'RESERVATION';
+
+delet
+
+--drop the constraint 
